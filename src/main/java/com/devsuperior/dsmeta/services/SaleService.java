@@ -1,11 +1,8 @@
 package com.devsuperior.dsmeta.services;
 
-import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,10 +23,5 @@ public class SaleService {
 		return new SaleMinDTO(entity);
 	}
 	
-	@Transactional(readOnly = true)
-	public Page<SaleMinDTO> findAll(LocalDate minDate, LocalDate maxDate, Pageable pageable) {
-		Page<Sale> result = repository.searchSummaryByDate(minDate, maxDate, pageable);
-		return result.map(x -> new SaleMinDTO(x));
-	}
 	
 }
